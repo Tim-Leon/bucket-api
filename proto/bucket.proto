@@ -332,19 +332,15 @@ message UploadFilesToBucketRequest {
   message File {
     string file_path = 1;
     uint64 size_in_bytes = 2;
+    /// Media Type(MIME)
+    string content_type = 3;
   }
-  string target_bucket_id = 1;
-  string target_bucket_owner_id = 2;
+  string target_bucket_owner_id = 1;
+  string target_bucket_id = 2;
   /// Will offset all of the paths.
   string target_directory = 3;
   repeated File source_files = 4;
-  uint64 part_size_limit_in_bytes =
-      5; ///???? NEED???? If the file is larger than this it will be split into
-         ///multiple parts. Each part of this size. This is because the browsers
-         ///limit the size of file in memory leading to multiple requests.
-  uint64 total_size_in_bytes = 6; /// Total size in bytes might be should be the
-                                  /// total the user wish to upload.
-  optional string hashed_password = 7;
+  optional string hashed_password = 5;
 }
 
 /// The response will at most return 5 upload urls per request.
