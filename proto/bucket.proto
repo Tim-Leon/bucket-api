@@ -297,7 +297,7 @@ message GetFileDetailsRequest {
 }
 
 message GetFileDetailsResponse {
-  uint32 file_size_in_bytes = 1;
+  uint64 file_size_in_bytes = 1;
   string file_format = 2;
 }
 
@@ -305,7 +305,7 @@ message GetFileDetailsResponse {
 message DownloadFilesRequest {
   message File {
     string file_path = 1;
-    uint32 size_in_bytes = 2;
+    uint64 size_in_bytes = 2;
   }
   string bucket_id = 1;
   string bucket_owner_id = 2;
