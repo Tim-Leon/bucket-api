@@ -240,23 +240,23 @@ message BucketDetails {
       18; // When the bucket will expire. WILL be present if is_prepaid = true.
 }
 
-message GetBucketDetailsFilter {
-  bool include_name = 1;
-  bool include_storage_class = 2;
-  bool include_size_in_bytes = 3;
-  bool include_encryption = 4;
-  bool include_is_password_protected = 5;
-  bool include_is_nsfw = 6;
-  bool include_is_searchable = 7;
-  bool include_is_shared = 8;
-  bool include_owner_user_id = 10;
-  bool include_description = 11;
-  bool include_creation_date = 12;
-  bool include_modified_date = 13;
-  bool include_visibility = 14;
-  bool include_bucket_download_count = 16;
-  bool include_bucket_file_download_count = 17;
-}
+// message GetBucketDetailsFilter {
+//   bool include_name = 1;
+//   bool include_storage_class = 2;
+//   bool include_size_in_bytes = 3;
+//   bool include_encryption = 4;
+//   bool include_is_password_protected = 5;
+//   bool include_is_nsfw = 6;
+//   bool include_is_searchable = 7;
+//   bool include_is_shared = 8;
+//   bool include_owner_user_id = 10;
+//   bool include_description = 11;
+//   bool include_creation_date = 12;
+//   bool include_modified_date = 13;
+//   bool include_visibility = 14;
+//   bool include_bucket_download_count = 16;
+//   bool include_bucket_file_download_count = 17;
+// }
 
 message GetBucketDetailsRequest {
   repeated string opt_bucket_ids =
@@ -266,7 +266,7 @@ message GetBucketDetailsRequest {
 
   optional uint32 offset = 3;
   optional uint32 limit = 4; //
-  optional GetBucketDetailsFilter filter = 5;
+  //optional GetBucketDetailsFilter filter = 5;
 }
 
 message GetBucketDetailsFromUrlRequest { string url = 1; }
