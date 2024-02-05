@@ -290,17 +290,6 @@ message DownloadBucketResponse {
   uint32 size = 3;
 }
 
-message GetFileDetailsRequest {
-  string bucket_id = 1;
-  string bucket_owner_id = 2;
-  repeated string file_paths = 3;
-}
-
-message GetFileDetailsResponse {
-  uint64 file_size_in_bytes = 1;
-  string file_format = 2;
-}
-
 /// Use stream?
 message DownloadFilesRequest {
   message File {

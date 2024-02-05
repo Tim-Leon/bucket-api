@@ -64,8 +64,6 @@ service BackendApi {
   rpc DownloadBucket(DownloadBucketRequest)
       returns (stream DownloadBucketResponse) {};
   // Bucket/File-Info
-  // rpc GetFileDetails(GetFileDetailsRequest) returns (GetFileDetailsResponse)
-  // {};
   rpc GetBucketDetails(GetBucketDetailsRequest)
       returns (GetBucketDetailsResponse) {};
   rpc GetBucketDetailsFromUrl(GetBucketDetailsFromUrlRequest)
