@@ -1,16 +1,17 @@
 syntax = "proto3";
 package backend_api;
+import "google/protobuf/timestamp.proto";
 
 // Representation of filesystem.
-message File {
+message File { 
   // The name of the file.
   string name = 1;
   // The size of the file in bytes.
   int64 size = 2;
   // Type of file. .exe, .txt, .png, etc.
   string file_format = 3;
-  // The content of the file.
-  // bytes content = 4;
+  // Timestamp of when the 
+  google.protobuf.Timestamp last_modified = 4;
 }
 
 message Directory {
