@@ -84,17 +84,18 @@ message CreateNewApiKeyRequest {
                    /// 'client-to-api' by default. client and server
                    /// denomonation are used depending on trust level. If it's
                    /// client directory to our server use 'client-to-server'.
-  string permission = 3; /// What the API is permitted to do. This include all
-                         /// the endpoints specified in json format.
-  repeated string bucket_id = 4; /// If the API is only allowed to access a set
+  repeated string bucket_id = 3; /// If the API is only allowed to access a set
                                  /// of specific bucket, leave empty for all.
   repeated string user_id =
-      5; /// If the API is only allowed to access a set of buckets from a
+      4; /// If the API is only allowed to access a set of buckets from a
          /// specific user or all, all referring to the current user and buckets
          /// that are shared with the user, leave empty for all.
   optional string webhook_url =
-      6;                       /// The endpoint of the webhook must be a url.
-  optional bytes metadata = 7; /// Metadata to be stored with the API key.
+      5;                       /// The endpoint of the webhook must be a url.
+  optional bytes metadata = 6; /// Metadata to be stored with the API key.
+
+  //string permission = 7; /// What the API is permitted to do. This include all
+                         /// the endpoints specified in json format, might be added in the future.
 }
 
 message CreateNewApiKeyResponse {
