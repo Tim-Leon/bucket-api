@@ -347,7 +347,7 @@ message UploadFilesToBucketResponse {
         3; // If the upload is continuing from a previous upload.
     uint64 file_size_in_bytes = 4;
     /// MIME of the file, if none is provided server will determine MIME.
-    optional string file_format = 5;
+    string file_format = 5;
   }
   // Url to where the file should be uploaded to.
   repeated FilepathUrlMap filepaths = 2;
