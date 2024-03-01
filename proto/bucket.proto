@@ -310,7 +310,7 @@ message DownloadFilesResponse {
     string download_url = 2;
     uint64 file_size_in_bytes = 3;
     /// MIME of file
-    string file_format = 4;
+    //string file_format = 4;
   }
   // Url to where the file should be downloaded from.
   repeated FilepathUrlMap filepaths = 1;
