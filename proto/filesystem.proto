@@ -2,10 +2,9 @@ syntax = "proto3";
 package backend_api;
 import "google/protobuf/timestamp.proto";
 
-// Representation of filesystem.
 message File { 
-  // The name of the file.
-  string name = 1;
+  // The path of the file. combine with offset_directory to get correct path.
+  string path = 1;
   // The size of the file in bytes.
   int64 size = 2;
   // Type of file. .exe, .txt, .png, etc.
@@ -14,20 +13,26 @@ message File {
   google.protobuf.Timestamp last_modified = 4;
 }
 
-message Directory {
-  // The name of the directory.
-  string name = 1;
-  // The files in the directory.
-  repeated File files = 2;
-  // The subdirectories in the directory.
-  repeated Directory subdirectories = 3;
-}
+//message Directory {
+//  // The name of the directory.
+//  string name = 1;
+//  // The files in the directory.
+//  repeated File files = 2;
+//  // The subdirectories in the directory.
+//  repeated Directory subdirectories = 3;
+//}
 
 // A Filesystem is created for each Bucket.
 // The filesystem is stored on disk. And load into memory on request.
 message Filesystem {
   // The root directory of the filesystem.
-  Directory root = 1;
+  // Directory root = 1;
+
+  // Filesystem contains an array of files, intead of tryng to use hierarical structure we use a simple array of files
+  // If the files path get too long, or there are no files other than in one specific directory the server can chose to offset the directory. 
+  string offset_directory = 1;
+
+  repeated File files = 2;  
 }
 
 message GetBucketFilestructureRequest {
