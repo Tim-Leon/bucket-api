@@ -6,9 +6,7 @@ message File {
   // The path of the file. combine with offset_directory to get correct path.
   string path = 1;
   // The size of the file in bytes.
-  int64 size = 2;
-  // Type of file. .exe, .txt, .png, etc.
-  string file_format = 3;
+  uint64 size = 2;
   // Timestamp of when the 
   google.protobuf.Timestamp last_modified = 4;
 }
@@ -30,7 +28,7 @@ message Filesystem {
 
   // Filesystem contains an array of files, intead of tryng to use hierarical structure we use a simple array of files
   // If the files path get too long, or there are no files other than in one specific directory the server can chose to offset the directory. 
-  string offset_directory = 1;
+  string common_prefix = 1;
 
   repeated File files = 2;  
 }
