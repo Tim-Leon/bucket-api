@@ -1,7 +1,7 @@
 fn main() {
     tonic_build::configure()
         .build_server(true)
-        .build_client(false)
+        .build_client(true)
         .compile(
             &[
                 "proto/backend_api.proto",
