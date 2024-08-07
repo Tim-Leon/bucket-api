@@ -79,37 +79,24 @@ message SetApiSettingsRequest {
 message SetApiSettingsResponse { bool api_is_enable = 1; }
 
 message CreateNewApiKeyRequest {
-  optional google.protobuf.Timestamp expires_at = 1; /// ISO 8601 format.
-  string role = 2; /// 'client-to-api', 'server-to-api' or 'api'.
-                   /// 'client-to-api' by default. client and server
-                   /// denomonation are used depending on trust level. If it's
-                   /// client directory to our server use 'client-to-server'.
-  repeated string bucket_id = 3; /// If the API is only allowed to access a set
-                                 /// of specific bucket, leave empty for all.
-  repeated string user_id =
-      4; /// If the API is only allowed to access a set of buckets from a
-         /// specific user or all, all referring to the current user and buckets
-         /// that are shared with the user, leave empty for all.
-  optional string webhook_url =
-      5;                       /// The endpoint of the webhook must be a url.
-  optional bytes metadata = 6; /// Metadata to be stored with the API key.
+  /// ISO 8601 format.
+  optional google.protobuf.Timestamp expires_at = 1;
+  // will be API, or USER. User can revoke API tokens, API can't.
+  string role = 2;
+  /// Empty to allow access to all available buckets under user.
+  /// Set to limit the access to specific users buckets.
+  repeated string opt_user_id_access = 4;
+  /// If the API is only allowed to access a set
+  /// of specific bucket, leave empty for all.
+  repeated string opt_bucket_id_access = 3;
 
-  //string permission = 7; /// What the API is permitted to do. This include all
-                         /// the endpoints specified in json format, might be added in the future.
+  optional bytes metadata = 6; /// Metadata to be stored with the API key.
 }
 
 message CreateNewApiKeyResponse {
   string api_token = 1; /// Will be a jwt token with role of 'api'.
 }
 
-/// User is not allowed to specify any webhook as this could be used to DOS
-/// another site. The user need to verify that they own the webhook domain.
-message RegisterWebhookRequest {
-  string webhook_url = 1;
-  string protocol = 2;
-}
-
-message DeleteWebhookRequest { string webhook_url = 1; }
 
 /// If both field are empty, it will assume the user is requesting for his own
 /// account details. Some information such as email are never returned when

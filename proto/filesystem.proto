@@ -2,7 +2,7 @@ syntax = "proto3";
 package backend_api;
 import "google/protobuf/timestamp.proto";
 
-message File { 
+message File {
   // The path of the file. combine with offset_directory to get correct path.
   string path = 1;
   // The size of the file in bytes.
@@ -26,11 +26,11 @@ message Filesystem {
   // The root directory of the filesystem.
   // Directory root = 1;
 
-  // Filesystem contains an array of files, intead of tryng to use hierarical structure we use a simple array of files
+  // Filesystem contains an array of files, instead of trying to use hierarical structure we use a simple array of files
   // If the files path get too long, or there are no files other than in one specific directory the server can chose to offset the directory. 
   string common_prefix = 1;
 
-  repeated File files = 2;  
+  repeated File files = 2;
 }
 
 message GetBucketFilestructureRequest {

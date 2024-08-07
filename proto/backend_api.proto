@@ -6,6 +6,7 @@ import "account.proto";
 import "search.proto";
 import "filesystem.proto";
 import "sync.proto";
+import "webhook.proto";
 package backend_api;
 
 // Error model that is used is: https://cloud.google.com/apis/design/errors
@@ -64,6 +65,7 @@ service BackendApi {
   rpc DownloadBucket(DownloadBucketRequest)
       returns (stream DownloadBucketResponse) {};
   // Bucket/File-Info
+  rpc ListBuckets(ListBucketsRequest) returns (ListBucketsResponse) {};
   rpc GetBucketDetails(GetBucketDetailsRequest)
       returns (GetBucketDetailsResponse) {};
   rpc GetBucketDetailsFromUrl(GetBucketDetailsFromUrlRequest)
@@ -95,7 +97,9 @@ service BackendApi {
   // user.
   rpc CreateBucketShareLink(CreateBucketShareLinkRequest)
       returns (CreateBucketShareLinkResponse) {
-  }; // Used by user who have an account. Provide read/write access to bucket
+  };
+  rpc CreateWebhook(CreateWebhookRequest) returns (CreateWebhookResponse) {};
+  // Used by user who have an account. Provide read/write access to bucket
      // for an etirity.
   // rpc DeleteUserFromSharedBucket(DeleteUserFromSharedBucketRequest) returns
   // (DeleteUserFromSharedBucketResponse) {}; /// Used by Share-File system to

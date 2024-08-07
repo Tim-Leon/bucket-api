@@ -1,0 +1,27 @@
+syntax = "proto3";
+package webhook_event;
+// Contains the message structure for events that is used in webhook,
+//
+
+message CreateBucketEvent{
+  uint64 user_id = 1;
+  uint64 bucket_id = 2;
+}
+message DeleteBucketEvent{
+
+}
+message UpdateBucketEvent{
+
+}
+message UploadFilesToBucketEvent {
+  string filename = 1;
+}
+
+message WebhookEvents {
+  oneof event {
+    CreateBucketEvent create_bucket_event = 1;
+    DeleteBucketEvent delete_bucket_event = 2;
+    UpdateBucketEvent update_bucket_event = 3;
+    UploadFilesToBucketEvent upload_files_to_bucket_event = 4;
+  }
+}

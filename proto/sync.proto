@@ -1,6 +1,19 @@
 syntax = "proto3";
 package backend_api;
 
+
+// When creating a webhook only content that is accessable with the used JWT token can be listend to.
+// THe webhook can listen for both account events and bucket events. 
+message CreateWebhook {
+  string webhook_url = 1;
+  /// Bukets the user wish to listen to.
+  repeated string opt_bucket_guids = 2; 
+  /// Users the user wishes to listen to. 
+  repeated string opt_users = 3;
+
+  
+}
+
 message BucketSyncStartRequest {
   repeated string opt_paths = 1; // optional paths to sync
 }
@@ -36,36 +49,36 @@ message BucketSyncRequest {
 }
 
 message BucketSyncResponse {
-  message FilesUploaded { repeated string paths = 1; };
-  message FilesDeleted { repeated string paths = 1; };
-  message FilesModified { repeated string paths = 1; };
-  message FilesMoved { repeated string paths = 1; };
-  message FilesCopied { repeated string paths = 1; };
-  message FilesRenamed { repeated string paths = 1; };
-  message UserDebited {
+  message FilesUploadedEvent { repeated string paths = 1;  };
+  message FilesDeletedEvent { repeated string paths = 1; };
+  message FilesModifiedEvent { repeated string paths = 1; };
+  message FilesMovedEvent { repeated string from_paths = 1; repeated string to_paths = 2; };
+  message FilesCopiedEvent { repeated string paths = 1; };
+  message FilesRenamedEvent { repeated string paths = 1; };
+  message UserDebitedEvent {
     string user_id = 1;
     string bucket_id = 2;
     string amount = 3;
   };
-  message BucketExpired { string bucket_id = 1; };
-  message BucketDeleted { string bucket_id = 1; };
-  message BucketRenamed {
+  message BucketExpiredEvent { string bucket_id = 1; };
+  message BucketDeletedEvent { string bucket_id = 1; };
+  message BucketRenamedEvent {
     string bucket_id = 1;
     string old_name = 2;
     string new_name = 3;
   };
-  message BucketUpdated { string bucket_id = 1; }
+  message BucketUpdatedEvent { string bucket_id = 1; }
   oneof event {
-    FilesUploaded files_uploaded = 1;
-    FilesDeleted files_deleted = 2;
-    FilesModified files_modified = 3;
-    FilesMoved files_moved = 4;
-    FilesCopied files_copied = 5;
-    FilesRenamed files_renamed = 6;
-    UserDebited user_debited = 7;
-    BucketExpired bucket_expired = 8;
-    BucketDeleted bucket_deleted = 9;
-    BucketRenamed bucket_renamed = 10;
-    BucketUpdated bucket_updated = 11;
+    FilesUploadedEvent files_uploaded = 1;
+    FilesDeletedEvent files_deleted = 2;
+    FilesModifiedEvent files_modified = 3;
+    FilesMovedEvent files_moved = 4;
+    FilesCopiedEvent files_copied = 5;
+    FilesRenamedEvent files_renamed = 6;
+    UserDebitedEvent user_debited = 7;
+    BucketExpiredEvent bucket_expired = 8;
+    BucketDeletedEvent bucket_deleted = 9;
+    BucketRenamedEvent bucket_renamed = 10;
+    BucketUpdatedEvent bucket_updated = 11;
   }
 }

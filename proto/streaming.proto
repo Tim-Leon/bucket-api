@@ -4,7 +4,7 @@ package backend_api;
 // connection without having to download the whole file. All of this is subject
 // to change and not supported yet. Don't use...
 
-// Wen playing back a video, it has to be in an supported format, If this is not
+// When playing back a video, it has to be in an supported format, If this is not
 // the case then we need to encode it into another format a.k.a transcode. This
 // can be used to turn existing files into playback available content or other.
 // Transcoding content could take a while so events will be used to notify
@@ -39,8 +39,12 @@ message StartVideoStreamRequest {
   string user_id = 1;
   string bucket_id = 2;
   string path = 3;
-  optional string format = 4; // Override the format that is currently used. The
-                              // will be determined based on file extension.
+  /// Override the format that is currently used. The
+  /// will be determined based on file extension.
+  optional string format = 4; 
+
 }
 
-message StartVideoStreamResponse {}
+message StartVideoStreamResponse {
+  string url = 1;
+}

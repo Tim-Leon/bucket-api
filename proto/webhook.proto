@@ -1,0 +1,50 @@
+syntax = "proto3";
+package backend_api;
+
+/// Webhook is scoped to have the same level of authority as the user who creates the webhook, which means it's determined by the JWT token that was used for the request. 
+message CreateWebhookRequest {
+  /// The endpoint of the webhook must be a valid url that can accept HTTPS traffic.
+  string webhook_url = 1;
+  /// Which account the user want to listen for account related webhooks, If the account is manager over other account it
+  /// will be able to listen those other accounts webhooks.
+  ///
+  repeated string opt_account_ids = 2;
+  /// The buckets the user wish to listen to webhooks coming from.
+  ///
+  repeated string opt_bucket_guids = 3;
+  /// HMAC-SHA256 or ED25519.
+  /// Note: HMAC-SHA256 will encode timestamp into the timestamp HTTP header.
+  string signature_scheme = 4;
+}
+
+message CreateWebhookResponse {
+  /// Key used by the user to validate the integrity of the messages received from the webhook
+  bytes signature_public_key = 1;
+
+  uint32 webhook_id = 2;
+
+}
+
+message ListWebhooksRequest {
+  string user_id = 1;
+}
+
+message ListWebhooksResponse {
+  repeated string webhook_id = 1;
+}
+
+message GetWebhooksRequest {
+  repeated string opt_webhook_ids = 1;
+}
+
+message GetWebhooksResponse {
+
+}
+
+message DeleteWebhookRequest {
+  string webhook_id = 1;
+}
+
+message DeleteWebhookResponse {
+  string webhook_id = 1;
+}
