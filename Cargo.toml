@@ -4,6 +4,11 @@ version = "0.0.0"
 rust-version = "1.80"
 edition = "2021"
 
+[features]
+default = ["server-api", "client-api"]
+client-api = []
+server-api = []
+
 [dependencies]
 tonic = {version = "*"}
 tonic-health = {version = "*"}
