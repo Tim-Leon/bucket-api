@@ -1,0 +1,19 @@
+[package]
+name = "api"
+version = "0.0.0"
+rust-version = "1.80"
+edition = "2021"
+
+[dependencies]
+tonic = {version = "*"}
+tonic-health = {version = "*"}
+tonic-web = {version = "*"}
+prost = {version = "*"}
+prost-types = {version = "*"}
+tokio = {version = "*"}
+generic-array = {version = "*"}
+[build-dependencies]
+prost = {version = "*"}
+tonic-build = {version = "*"}
+
+
