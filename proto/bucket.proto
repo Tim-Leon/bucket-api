@@ -221,7 +221,7 @@ message DeleteFilesInBucketRequest {
 }
 
 message DeleteFilesInBucketResponse {repeated string failed_file_paths = 1;}
-message BucketDetails {
+message BucketDetail {
   string bucket_id = 1;
   string owner_user_id = 10;
   string name = 3;
@@ -243,6 +243,7 @@ message BucketDetails {
   /// expires field for when the bucket is removed.
   optional google.protobuf.Timestamp expires =
       18; // When the bucket will expire. WILL be present if is_prepaid = true.
+  string bucket_compression = 19;
 }
 
 // message GetBucketDetailsFilter {
@@ -276,9 +277,9 @@ message GetBucketDetailsRequest {
 
 message GetBucketDetailsFromUrlRequest {string url = 1;}
 
-message GetBucketDetailsFromUrlResponse {BucketDetails buckets = 1;}
+message GetBucketDetailsFromUrlResponse {BucketDetail buckets = 1;}
 
-message GetBucketDetailsResponse {repeated BucketDetails buckets = 1;}
+message GetBucketDetailsResponse {repeated BucketDetail buckets = 1;}
 
 message DownloadBucketRequest {
   string bucket_id = 1;
@@ -307,6 +308,7 @@ message DownloadFilesRequest {
   /// or a singed url only.
   repeated File files = 3;
   optional string hashed_password = 4;
+
 }
 
 
@@ -365,10 +367,13 @@ message PreSignedUpload {
 /// The client might have to make multiple request to upload all files
 /// especially if the size is over 5 GiB.
 message UploadFilesToBucketResponse {
-  // Urls to where the file should be uploaded to.
-  repeated PreSignedUpload filepaths = 2;
-  // Upload can not excede this limit, is just a suggestion to client., but if
-  uint64 size_in_bytes_limit = 3;
+  /// Upload can not excede this limit, is just a suggestion to client., but if
+  uint64 size_in_bytes_limit = 1;
+  /// Bucket compression currently in use.
+  string bucket_compression = 2;
+  /// Urls to where the file should be uploaded to.
+  repeated PreSignedUpload filepaths = 3;
+
 }
 
 /// If a 3rd part chose to use this API they can use this API to avoid having
