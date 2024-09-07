@@ -15,8 +15,6 @@ tonic-health = {version = "*"}
 tonic-web = {version = "*"}
 prost = {version = "*"}
 prost-types = {version = "*"}
-tokio = {version = "*"}
-generic-array = {version = "*"}
 [build-dependencies]
 prost = {version = "*"}
 tonic-build = {version = "*"}
