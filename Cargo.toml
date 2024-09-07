@@ -10,9 +10,9 @@ client-api = []
 server-api = []
 
 [dependencies]
-tonic = {version = "*"}
-tonic-health = {version = "*"}
-tonic-web = {version = "*"}
+tonic = {version = "*", features = ["prost", "channel"], default-features = false}
+tonic-health = {version = "*", default-features = false, features = []}
+tonic-web = {version = "*", default-features = false, features = []}
 prost = {version = "*"}
 prost-types = {version = "*"}
 [build-dependencies]
