@@ -24,6 +24,8 @@ message SearchForBucketsRequest {
   optional bool is_encrypted = 18;
   optional bool is_password_protected = 19;
   optional string storage_class = 20;
+  bool should_page = 21;
+  optional string continuation_token = 22;
 }
 
 message BucketView {
@@ -42,6 +44,7 @@ message SearchForBucketsResponse {
   optional uint32 offset = 1;
   optional uint32 count = 2;
   repeated BucketView buckets = 3;
+  optional string continuation_token = 4;
 }
 
 message SearchInBucketRequest {
@@ -58,6 +61,8 @@ message SearchInBucketRequest {
   optional uint64 max_size = 11;
   optional string directory = 12;
   optional string file_extension = 13;
+  bool should_page = 14;
+  optional string continuation_token = 15;
 }
 
 message BucketFileView {
@@ -73,4 +78,5 @@ message SearchInBucketResponse {
   optional uint32 offset = 1;
   optional uint32 count = 2;
   repeated BucketFileView files = 3;
+  optional string continuation_token = 4;
 }

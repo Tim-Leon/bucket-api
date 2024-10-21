@@ -270,16 +270,18 @@ message GetBucketDetailsRequest {
   // private if authorized.
   string bucket_owner_id = 2;
 
-  optional uint32 offset = 3;
-  optional uint32 limit = 4; //
-  //optional GetBucketDetailsFilter filter = 5;
+  optional string continuation_token = 3;
+  bool should_page = 4;
 }
 
 message GetBucketDetailsFromUrlRequest {string url = 1;}
 
 message GetBucketDetailsFromUrlResponse {BucketDetail buckets = 1;}
 
-message GetBucketDetailsResponse {repeated BucketDetail buckets = 1;}
+message GetBucketDetailsResponse {
+  repeated BucketDetail buckets = 1;
+  optional string continuation_token = 2;
+}
 
 message DownloadBucketRequest {
   string bucket_id = 1;
