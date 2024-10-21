@@ -73,19 +73,21 @@ message CreateBucketRequest {
   optional google.protobuf.Timestamp expires_timestamp = 11;
   // Expected size of the bucket, in bytes.
   optional uint64 expected_capacity_in_bytes = 12;
-  bool is_nsfw = 13;
-  // If the bucket is searchable or not, Will end up costing more.
-  bool is_searchable = 14;
-  /// If the user is allowed to clone and distribute the same content. If this
-  /// value is false for a bucket assume it's not okay to redustribute.
-  bool is_bucket_cloneable = 15;
-  /// If the bucket is non-sharable it will use zero-knowledge encryption.
-  bool is_sharable = 16;
-  /// Pay upfront for the bucket capacity.
-  bool is_prepaid = 17;
   /// Compression on bucket level. All files stored in the bucket is assumed to
   /// use this compression. Support both client and server side compression.
-  optional string bucket_compression = 18;
+  optional string bucket_compression = 13;
+  bool is_nsfw = 14;
+  // If the bucket is searchable or not, Will end up costing more.
+  bool is_searchable = 15;
+  /// If the user is allowed to clone and distribute the same content. If this
+  /// value is false for a bucket assume it's not okay to redustribute.
+  bool is_bucket_cloneable = 16;
+  /// If the bucket is non-sharable it will use zero-knowledge encryption.
+  bool is_sharable = 17;
+  /// Pay upfront for the bucket capacity.
+  bool is_prepaid = 18;
+  /// The bucket can only be accessed over HTTPS.
+  bool is_https_only = 19;
 }
 
 // Region:Site does not
