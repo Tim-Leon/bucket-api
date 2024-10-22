@@ -89,5 +89,6 @@ message SearchForUserRequest {
 }
 
 message SearchForUserResponse {
-  repeated AccountDetail user = 1;
+  repeated AccountDetail opt_users = 1;
+  optional string continuation_token = 3;
 }
