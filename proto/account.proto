@@ -102,13 +102,10 @@ message CreateNewApiKeyResponse {
 /// account details. Some information such as email are never returned when
 /// requesting for other accounts.
 message GetAccountDetailsRequest {
-  oneof user {
     string user_id = 1;
-    string username = 2;
-  }
 }
 
-message GetAccountDetailsResponse {
+message AccountDetail {
   string user_id = 1;
   string username = 2;
   optional string email = 3;
@@ -129,6 +126,10 @@ message GetAccountDetailsResponse {
   optional bool is_api_enabled = 14;
   optional string preferred_language = 15;
   optional string bio = 16;
+}
+
+message GetAccountDetailsResponse {
+  AccountDetail account_detail = 1;
 }
 
 /// Used to create payment checkout for a user. User will get a link in

@@ -2,6 +2,7 @@ syntax = "proto3";
 package backend_api;
 
 import "google/protobuf/timestamp.proto";
+import "account.proto";
 
 message SearchForBucketsRequest {
   string query = 1;
@@ -88,5 +89,5 @@ message SearchForUserRequest {
 }
 
 message SearchForUserResponse {
-  string
+  repeated AccountDetail user = 1;
 }
