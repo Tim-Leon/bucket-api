@@ -76,6 +76,7 @@ service BackendApi {
   rpc SearchInBucket(SearchInBucketRequest) returns (SearchInBucketResponse) {};
   rpc SearchForBuckets(SearchForBucketsRequest)
       returns (SearchForBucketsResponse) {};
+  rpc SearchForUser()
 
   // Bucket file operations delete/move/copy/clone
   rpc DeleteFilesInBucket(DeleteFilesInBucketRequest)

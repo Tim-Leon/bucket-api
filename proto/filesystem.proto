@@ -44,7 +44,7 @@ message GetBucketFilestructureRequest {
   optional string continuation_token = 4;
   /// Whether the response should return a continuation token, for the user to page the data.
   /// If the user only needs the first couple of rows this filed can be set to false.
-  bool should_page = 5;
+  bool should_paginate = 5;
 }
 
 message GetBucketFilestructureResponse {

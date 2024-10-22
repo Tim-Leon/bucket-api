@@ -273,7 +273,7 @@ message GetBucketDetailsRequest {
   string bucket_owner_id = 2;
 
   optional string continuation_token = 3;
-  bool should_page = 4;
+  bool should_paginate = 4;
 }
 
 message GetBucketDetailsFromUrlRequest {string url = 1;}
