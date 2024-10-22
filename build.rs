@@ -10,7 +10,7 @@ fn main() {
         config = config.build_client(true);
     }
     config
-        .compile(
+        .compile_protos(
             &[
                 "proto/backend_api.proto",
                 "proto/webhook_event.proto",
