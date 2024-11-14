@@ -1,10 +1,12 @@
 syntax = "proto3";
 package backend_api;
+import "google/protobuf/timestamp.proto";
 
 /// Webhook is scoped to have the same level of authority as the user who creates the webhook, which means it's determined by the JWT token that was used for the request. 
 message CreateWebhookRequest {
-  /// The endpoint of the webhook must be a valid url that can accept HTTPS traffic.
-  string webhook_url = 1;
+  /// The endpoint of the webhook must be a valid url that can accept HTTPS traffic. If it's null, it will assume the user don't have domain name, and will instead create a ticket that the user can
+  /// Use when establishing a websocket connection.
+  optional string webhook_url = 1;
   /// Which account the user want to listen for account related webhooks, If the account is manager over other account it
   /// will be able to listen those other accounts webhooks.
   ///
@@ -15,6 +17,10 @@ message CreateWebhookRequest {
   /// HMAC-SHA256 or ED25519.
   /// Note: HMAC-SHA256 will encode timestamp into the timestamp HTTP header.
   string signature_scheme = 4;
+  /// Can either use HTTPS, or Websocket, HTTPS is only supported with domain name in teh webhook_url
+  string webhook_connection_protocol = 5;
+  /// How long the webhook will be valid for.
+  optional google.protobuf.Timestamp lifetime = 6;
 }
 
 message CreateWebhookResponse {

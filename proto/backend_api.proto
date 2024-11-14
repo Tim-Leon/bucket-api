@@ -7,6 +7,7 @@ import "search.proto";
 import "filesystem.proto";
 import "sync.proto";
 import "webhook.proto";
+import "share.proto";
 package backend_api;
 
 // Error model that is used is: https://cloud.google.com/apis/design/errors
@@ -96,12 +97,17 @@ service BackendApi {
   // rpc InviteUserToBucket(InviteUserToBucketRequest) returns
   // (InviteUserToBucketResponse) {}; // Used by Share-File system to invite a
   // user.
-  rpc CreateBucketShareLink(CreateBucketShareLinkRequest)
-      returns (CreateBucketShareLinkResponse) {
+  rpc CreateBucketShareToken(CreateBucketShareTokenRequest)
+      returns (CreateBucketShareTokenResponse) {
   };
+  rpc RegisterBucketSecreteShareLink(RegisterBucketSecreteShareLinkTokenRequest) returns (RegisterBucketSecreteShareLinkTokenResponse) {};
+  rpc GetBucketShareLinksPaginatable(GetBucketShareLinksPaginatableRequest) returns (GetBucketShareLinksPaginatableResponse) {};
+  rpc DeleteBucketShareLinks(DeleteBucketShareLinksRequest) returns (DeleteBucketShareLinksResponse) {};
+  rpc DeleteUsersFromSharedBucket(DeleteUsersFromSharedBucketRequest) returns (DeleteUsersFromSharedBucketResponse) {};
+
   rpc CreateWebhook(CreateWebhookRequest) returns (CreateWebhookResponse) {};
   // Used by user who have an account. Provide read/write access to bucket
-     // for an etirity.
+  // for an etirity.
   // rpc DeleteUserFromSharedBucket(DeleteUserFromSharedBucketRequest) returns
   // (DeleteUserFromSharedBucketResponse) {}; /// Used by Share-File system to
   // delete a user. rpc DeleteBucketShareLinks(DeleteBucketShareLinksRequest)

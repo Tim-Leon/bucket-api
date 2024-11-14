@@ -1,0 +1,31 @@
+syntax = "proto3";
+package backend_api;
+import "google/protobuf/timestamp.proto";
+
+
+/// Every storage engine will have a different performance.
+/// You can query the storage engines that are used by the specific name
+message GetStorageEngineMetrics {
+  /// The storage engine to be used.
+  string engine_name = 1;
+}
+
+message GetStorageEngineMetricsResponse {
+  string storage_engine_type = 1;
+  Metric latency = 2;
+  Metric throughput = 3;
+  Metric cost  = 4;
+
+}
+
+
+
+message Metric {
+  string name = 1;
+  repeated MetricValue series = 2;
+}
+
+message MetricValue {
+  google.protobuf.Timestamp  timestamp = 1;
+  string value = 2;
+}

@@ -8,7 +8,19 @@ Transcoder and compressor are optimized prebuilt components for a a specific
 task. Lambda is a function
 
 */
+
+message ArchiveCompressRequest {
+  repeated string source_filepath = 1;
+  optional string target_filepath = 2;
+  bool is_destructive = 3; /// IF the archive compression will delete all of the source_filepath
+
+}
+
+message ArchiveComp
+
+
 message ModelWorkflow {}
+
 
 message Compressor {
   string source_filepath = 1;

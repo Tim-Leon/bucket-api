@@ -50,15 +50,16 @@ message AccountLoginFinishResponse { string jwt_token = 1; }
 // SetupTwoFactorAuthenticationResponse <- Server Client ->
 // SetupVerifyTwoFactorAuthenticationRequest -> Server Client <-
 // SetupVerifyTwoFactorAuthenticationResponse <- Server
+// First the user gets the secrete, the user stores the secrete, the user uses the secrete to compute the first totp code and send that in for verification.
 message SetupTwoFactorAuthenticationRequest {}
 
-message SetupTwoFactorAuthenticationResponse { string qr_secret = 1; }
+message SetupTwoFactorAuthenticationResponse { string totp_secrete = 1; }
 
-message SetupVerifyTwoFactorAuthenticationRequest { string qr_code = 1; }
-/// Will return a status error message if qr_code is invalid.
-message SetupVerifyTwoFactorAuthenticationResponse {}
-/// Invalidates the users JWT-token
-message AccountLogoutRequest { string jwt_token = 1; }
+message SetupTwoFactorAuthenticationVerifyRequest { string totp_code = 1; }
+/// Will return a status error message if totp_code is invalid.
+message SetupTwoFactorAuthenticationVerifyResponse {}
+/// Invalidates the users JWT-token.
+message AccountLogoutRequest { string token = 1; }
 
 message AccountLogoutResponse {}
 

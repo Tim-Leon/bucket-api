@@ -1,0 +1,36 @@
+syntax = "proto3";
+package backend_api;
+
+message BucketGuid {
+  string user_id = 1;
+  string bucket_id = 2;
+}
+
+
+message CreateBucketCollectionRequest {
+  optional string name = 1;
+  repeated BucketGuid bucket_guid = 2;
+}
+
+message CreateBucketCollectionResponse {
+  string collection_id = 1;
+}
+
+message DeleteBucketCollectionRequest {
+  string collection_id = 1;
+}
+
+message DeleteBucketCollectionResponse {
+
+}
+
+message UpdateBucketCollectionRequest {
+  string collection_id = 1;
+  optional string name = 2;
+  repeated string bucket_guid = 3;
+}
+
+message UpdateBucketCollectionResponse {
+  string name = 1;
+  repeated string bucket_guid = 2;
+}

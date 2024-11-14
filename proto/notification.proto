@@ -1,0 +1,7 @@
+message GetNotificationsPaginatableRequest {
+  
+}
+
+message DeleteNotificationsRequest {
+
+}

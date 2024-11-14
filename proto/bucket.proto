@@ -50,7 +50,8 @@ message BucketRedundancy {
 }
 
 message CreateBucketRequest {
-  string name = 1;
+  /// If no name is provided then the bucket generated UUID is used.
+  optional string name = 1;
   // Public,PrivateShared, Private,
   optional string visibility = 2;
   // The encryption algorithm used for the bucket. Currently only supports
@@ -60,13 +61,10 @@ message CreateBucketRequest {
   /// bucket are required to enter the password. The field doesn't affect
   /// encryption, only access control.
   optional string password = 4;
-  /// Redundancy settings TODO: Currently not supported.
-  // optional BucketRedundancy redundancy = 5;
-  // Optional description of the bucket.
+
   optional string description = 8;
-  // Storage class, Standard. Will later support Performant(That will use SSD or
-  // NVME?), Extra-Performant(NVME) with super fast ethernet.
-  string storage_class = 9;
+  /// The underlying storage engine to use. Look into storage-engine in documentation for more information.
+  string storage_engine_type = 9;
   // Tag the storage, like pictures, music, videos, etc.
   repeated string tags = 10;
   // When the bucket will expire.
@@ -79,8 +77,8 @@ message CreateBucketRequest {
   bool is_nsfw = 14;
   // If the bucket is searchable or not, Will end up costing more.
   bool is_searchable = 15;
-  /// If the user is allowed to clone and distribute the same content. If this
-  /// value is false for a bucket assume it's not okay to redustribute.
+  /// If the user ris allowed to clone and distribute the same content. If this
+  //  /// value is false for a bucket assume it's not okay to redistribute.
   bool is_bucket_cloneable = 16;
   /// If the bucket is non-sharable it will use zero-knowledge encryption.
   bool is_sharable = 17;
@@ -109,9 +107,7 @@ message DeleteBucketResponse {
 /// This api endpoint will be updated in the future to support more options and
 /// is not priority yet because of being complicated.
 message UpdateBucketRequest {
-  string bucket_id = 1;
-  string bucket_user_id = 2;
-
+  BucketGuid bucket_guid = 1;
   optional string name = 3;
   // Public,PrivateShared, Private,
   optional string visibility = 4;
@@ -207,6 +203,9 @@ message CloneBucketRequest {
   optional string new_bucket_type = 4;
   optional string new_bucket_encryption = 5;
   optional string new_bucket_password = 6;
+
+  bool should_abandon_partial = 7; /// If
+  bool should_overwrite = 8;
 }
 
 message CloneBucketResponse {}
@@ -217,7 +216,7 @@ message DeleteFilesInBucketRequest {
   repeated string filepaths = 3;
   /// Will remove the capacity form the bucket of x amount of bytes.
   /// Default this should be true in most cases.
-  /// Only false if the user intneds to keep the storage to be uploaded to later
+  /// Only false if the user intends to keep the storage to be uploaded to later
   /// on...
   bool is_capacity_destructive = 7;
 }
