@@ -1,0 +1,11 @@
+syntax = "proto3";
+package search;
+import "search/v1/search.proto";
+
+
+service SearchService {
+  rpc SearchInBucket(SearchInBucketRequest) returns (SearchInBucketResponse) {};
+  rpc SearchForBuckets(SearchForBucketsRequest)
+      returns (SearchForBucketsResponse) {};
+  rpc SearchForUser(SearchForUserRequest) returns (SearchForUserResponse) {};
+}

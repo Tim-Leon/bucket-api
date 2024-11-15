@@ -1,0 +1,35 @@
+syntax = "proto3";
+package share;
+import "google/protobuf/timestamp.proto";
+import "common/v1/storage.proto";
+
+
+message DeleteUsersFromSharedBucketRequest {
+  string bucket_id = 1;
+  repeated string user_ids = 2;
+}
+
+message DeleteUsersFromSharedBucketResponse {}
+
+message SharedUser {
+  string user_id = 1;
+  common.storage.StoragePermission permissions = 2;
+  string username = 3;
+  string email = 4;
+}
+
+message GetBucketSharedUsersPaginatableRequest {
+  string bucket_guid = 1;
+  string continuation_token = 2;
+  bool should_paginate = 3;
+}
+
+message GetBucketSharedUsersPaginatableResponse {
+  repeated SharedUser users = 3;
+}
+
+message InviteUserToBucketRequest {
+  string user_id = 1;
+}
+
+message InviteUserToBucketResponse {}

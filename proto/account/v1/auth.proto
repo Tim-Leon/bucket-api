@@ -1,5 +1,5 @@
 syntax = "proto3";
-package backend_api;
+package account;
 // https://docs.rs/opaque-ke/latest/opaque_ke/
 // Will use opaque-ke for registration and login.
 // From opaque-ke we will get a session token. This token can later be used to

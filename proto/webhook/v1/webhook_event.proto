@@ -1,11 +1,10 @@
 syntax = "proto3";
-package webhook_event;
+package webhook;
 // Contains the message structure for events that is used in webhook,
 //
 
 message CreateBucketEvent{
-  uint64 user_id = 1;
-  uint64 bucket_id = 2;
+  string bucket_guid = 1;
 }
 message DeleteBucketEvent{
 

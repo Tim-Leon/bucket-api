@@ -1,0 +1,50 @@
+syntax = "proto3";
+package share;
+import "google/protobuf/timestamp.proto";
+import "common/v1/storage.proto";
+
+message CreateBucketShareTokenRequest {
+  string bucket_guid = 1;
+  optional google.protobuf.Timestamp expires = 2;
+  optional uint32 usage_limit = 3;
+  common.storage.StoragePermission share_link_permission = 4;
+}
+
+message CreateBucketShareTokenResponse { string token = 1; }
+
+/// Creates a secrete share link for a bucket. Note that it's up to the user to create the actual link to share, this request is purely to register that a secrete share link existence
+/// for the bucket the access-control restrictions that are in place to access the bucket.
+/// A signature is also that will be used to lookup this information.
+message RegisterBucketDecentralizedShareLinkTokenRequest {
+  string bucket_guid = 1;
+  optional google.protobuf.Timestamp expires = 2;
+  optional uint32 usage_limit = 3;
+  common.storage.StoragePermission permissions = 4;
+  /// Token is the hashed encryption key.
+  optional string token = 5;
+  /// Ed22519 signature of the secrete link.
+  optional string signature = 6;
+}
+
+message RegisterBucketDecentralizedShareLinkTokenResponse {
+}
+
+
+message GetBucketShareLinksPaginatableRequest {
+  string bucket_guid = 1;
+  optional string token = 3;
+  /// For pagination
+  optional string continuation_token = 4;
+  bool should_paginate = 5;
+}
+
+message GetBucketShareLinksPaginatableResponse {
+  /// Note that this is a special format that needs to be parsed. The format is described in documentation.
+  repeated string secret_share_link_urls = 1;
+  repeated string share_link_urls = 2;
+  optional string continuation_token = 3;
+}
+
+message DeleteBucketShareLinksRequest { repeated string urls = 1; }
+
+message DeleteBucketShareLinksResponse { repeated string urls = 1; }

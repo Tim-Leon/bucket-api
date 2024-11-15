@@ -1,0 +1,24 @@
+syntax = "proto3";
+package common.account;
+message AccountDetail {
+  string user_id = 1;
+  string username = 2;
+  optional string email = 3;
+  optional string role = 4;
+  /// decimal
+  optional string total_cost = 5;
+  /// decimal
+  optional string cost_limit = 6;
+  /// decimal
+  optional string balance = 7;
+  optional uint32 verification_flag = 8; /// flag uint
+  optional uint32 bucket_count = 9;
+  optional uint64 total_storage_bytes = 10;
+  optional uint64 storage_limit_bytes = 11;
+  optional string payment_plan = 12;
+  optional string payment_amount =
+      13; /// Only when using monthly billing will this value be present.
+  optional bool is_api_enabled = 14;
+  optional string preferred_language = 15;
+  optional string bio = 16;
+}

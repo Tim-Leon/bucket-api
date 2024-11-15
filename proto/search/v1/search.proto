@@ -1,8 +1,8 @@
 syntax = "proto3";
-package backend_api;
+package search;
 
 import "google/protobuf/timestamp.proto";
-import "account.proto";
+import "common/v1/account.proto";
 
 message SearchForBucketsRequest {
   string query = 1;
@@ -89,6 +89,6 @@ message SearchForUserRequest {
 }
 
 message SearchForUserResponse {
-  repeated AccountDetail opt_users = 1;
+  repeated common.account.AccountDetail opt_users = 1;
   optional string continuation_token = 3;
 }

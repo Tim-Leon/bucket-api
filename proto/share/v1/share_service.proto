@@ -1,0 +1,14 @@
+syntax = "proto3";
+package share;
+import "share/v1/share_link.proto";
+import "share/v1/share.proto";
+service ShareService {
+
+  rpc CreateBucketShareToken(CreateBucketShareTokenRequest)
+      returns (CreateBucketShareTokenResponse) {
+  };
+  rpc RegisterBucketDecentralizedShareLinkToken(RegisterBucketDecentralizedShareLinkTokenRequest) returns (RegisterBucketDecentralizedShareLinkTokenResponse) {};
+  rpc GetBucketShareLinksPaginatable(GetBucketShareLinksPaginatableRequest) returns (GetBucketShareLinksPaginatableResponse) {};
+  rpc DeleteBucketShareLinks(DeleteBucketShareLinksRequest) returns (DeleteBucketShareLinksResponse) {};
+  rpc DeleteUsersFromSharedBucket(DeleteUsersFromSharedBucketRequest) returns (DeleteUsersFromSharedBucketResponse) {};
+}

@@ -1,0 +1,34 @@
+syntax = "proto3";
+package bucket;
+import "storage/v1/filesystem.proto";
+import "storage/v1/bucket.proto";
+import "storage/v1/bucket_collection.proto";
+service StorageService {
+  // create/delete
+  rpc CreateBucket(CreateBucketRequest) returns (CreateBucketResponse) {};
+  rpc DeleteBucket(DeleteBucketRequest) returns (DeleteBucketResponse) {};
+  rpc UpdateBucket(UpdateBucketRequest) returns (UpdateBucketResponse) {};
+  // Upload
+  rpc UploadFilesToBucket(UploadFilesToBucketRequest)
+      returns (UploadFilesToBucketResponse) {};
+  // Download
+  rpc DownloadFiles(DownloadFilesRequest)
+      returns (stream DownloadFilesResponse) {};
+  rpc DownloadBucket(DownloadBucketRequest)
+      returns (stream DownloadBucketResponse) {};
+  // Bucket/File-Info
+  rpc ListBuckets(ListBucketsRequest) returns (ListBucketsResponse) {};
+  rpc GetBucketDetails(GetBucketDetailsRequest)
+      returns (GetBucketDetailsResponse) {};
+  rpc GetBucketDetailsFromUrl(GetBucketDetailsFromUrlRequest)
+      returns (GetBucketDetailsFromUrlResponse) {};
+  rpc GetFilestructure(GetFilestructurePaginationRequest)
+      returns (GetFilestructurePaginationResponse) {};
+  // Bucket file operations delete/move/copy/clone
+  rpc DeleteFilesInBucket(DeleteFilesInBucketRequest)
+      returns (DeleteFilesInBucketResponse) {};
+  rpc MoveFilesInBucket(MoveFilesInBucketRequest)
+      returns (MoveFilesInBucketResponse) {};
+  rpc CopyFilesInBucket(CopyFilesInBucketRequest)
+      returns (CopyFilesInBucketResponse) {};
+}

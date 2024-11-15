@@ -1,15 +1,10 @@
 syntax = "proto3";
-package backend_api;
-
-message BucketGuid {
-  string user_id = 1;
-  string bucket_id = 2;
-}
-
+package bucket;
+import "common/v1/storage.proto";
 
 message CreateBucketCollectionRequest {
   optional string name = 1;
-  repeated BucketGuid bucket_guid = 2;
+  repeated common.storage.BucketGuid bucket_guid = 2;
 }
 
 message CreateBucketCollectionResponse {

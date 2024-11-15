@@ -1,6 +1,7 @@
 syntax = "proto3";
-package backend_api;
+package webhook;
 import "google/protobuf/timestamp.proto";
+
 
 /// Webhook is scoped to have the same level of authority as the user who creates the webhook, which means it's determined by the JWT token that was used for the request. 
 message CreateWebhookRequest {
@@ -31,20 +32,12 @@ message CreateWebhookResponse {
 
 }
 
-message ListWebhooksRequest {
+message ListWebhooksPaginationRequest {
   string user_id = 1;
 }
 
-message ListWebhooksResponse {
+message ListWebhooksPaginationResponse {
   repeated string webhook_id = 1;
-}
-
-message GetWebhooksRequest {
-  repeated string opt_webhook_ids = 1;
-}
-
-message GetWebhooksResponse {
-
 }
 
 message DeleteWebhookRequest {

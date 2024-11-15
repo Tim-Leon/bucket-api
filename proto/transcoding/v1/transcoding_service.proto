@@ -1,0 +1,7 @@
+syntax = "proto3";
+package transcoding;
+import "transcoding/v1/image.proto";
+
+service TranscodingService {
+  rpc ResizeImage(ResizeImageRequest) returns(ResizeImageResponse) {};
+}

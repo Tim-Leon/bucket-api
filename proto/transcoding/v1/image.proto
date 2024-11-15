@@ -1,5 +1,5 @@
 syntax = "proto3";
-package backend_api;
+package transcoding;
 import "google/protobuf/timestamp.proto";
 
 message Scaling  {
@@ -12,5 +12,8 @@ message ResizeImageRequest {
   string from_absolute_path = 1;
   optional string to_absolute_path = 2;
   optional Scaling scaling = 3;
+}
+
+message ResizeImageResponse {
 
 }

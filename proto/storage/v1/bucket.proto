@@ -1,6 +1,7 @@
 syntax = "proto3";
-package backend_api;
+package bucket;
 import "google/protobuf/timestamp.proto";
+import "common/v1/storage.proto";
 
 /// The default encryption algorithm is Server AES-256.
 /// - Custom
@@ -25,10 +26,6 @@ message GetRegionsClustersRequest {
   string cluster = 2;
 }
 
-message BucketGuid {
-  string user_id = 1;
-  string bucket_id = 2;
-}
 
 message RegionClusters {
   string region = 1;
@@ -107,7 +104,7 @@ message DeleteBucketResponse {
 /// This api endpoint will be updated in the future to support more options and
 /// is not priority yet because of being complicated.
 message UpdateBucketRequest {
-  BucketGuid bucket_guid = 1;
+  common.storage.BucketGuid bucket_guid = 1;
   optional string name = 3;
   // Public,PrivateShared, Private,
   optional string visibility = 4;
@@ -156,8 +153,7 @@ message UpdateBucketRequest {
 message UpdateBucketResponse {}
 
 message MoveFilesInBucketRequest {
-  string from_bucket_id = 1;
-  string from_bucket_owner_id = 2;
+  string from_bucket_guid = 1;
   repeated string from_filepaths = 3;
 
   string to_bucket_id = 4;
@@ -398,5 +394,5 @@ message ListBucketsRequest {
   optional string user_id = 1;
 }
 message ListBucketsResponse {
-  repeated BucketGuid bucket_guids = 1;
+  repeated common.storage.BucketGuid bucket_guids = 1;
 }

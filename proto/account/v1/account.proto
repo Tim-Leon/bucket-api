@@ -1,5 +1,5 @@
 syntax = "proto3";
-package backend_api;
+package account;
 import "google/protobuf/timestamp.proto";
 
 /// This sets the public signing key that can be used by Client-Side-Encryption

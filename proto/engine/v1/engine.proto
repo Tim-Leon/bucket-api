@@ -1,0 +1,17 @@
+syntax = "proto3";
+package engine;
+message GetStorageEnginePaginationRequest {
+
+}
+
+message StorageEngineDetail {
+  string name = 1;
+  string storage_engine_type = 2;
+  string average_latency = 3;
+  string average_throuput = 4;
+  string average_load = 5;
+}
+
+message GetStorageEnginePaginationResponse {
+  StorageEngineDetail details = 1;
+}

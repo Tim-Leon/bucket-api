@@ -5,17 +5,23 @@ rust-version = "1.80"
 edition = "2021"
 
 [features]
-default = ["server-api", "client-api"]
+default = ["server-api", "client-api", "all_api"]
 client-api = []
 server-api = []
+all_api = ["metrics", "storage", "share", "webhook", "seach"]
+# API for getting the metrics using operntelemetry over ptotobuf.
 metrics = ["opentelemetry-proto"]
+storage = []
+share = []
+webhook = []
+seach = []
 [dependencies]
 tonic-health = {version = "*", default-features = false, features = []}
 tonic-web = {version = "*", default-features = false, features = []}
 prost = {version = "*"}
 prost-types = {version = "*"}
 
-opentelemetry-proto = { version = "0.27.0", optional = true, features = ["full"] }
+opentelemetry-proto = { version = "0.27.0", optional = true, features = ["gen-tonic-messages"] }
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
 tonic-web-wasm-client = { version = "*", features = []}

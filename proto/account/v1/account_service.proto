@@ -1,0 +1,32 @@
+syntax = "proto3";
+import "account/v1/account.proto";
+import "account/v1/auth.proto";
+package account;
+
+service AccountService {
+  // Auth
+  rpc CreateAccountStart(CreateAccountStartRequest)
+      returns (CreateAccountStartResponse) {};
+  rpc CreateAccountFinish(CreateAccountFinishRequest)
+      returns (CreateAccountFinishResponse) {};
+
+  rpc AccountLoginStart(AccountLoginStartRequest)
+      returns (AccountLoginStartResponse) {};
+  rpc AccountLoginFinish(AccountLoginFinishRequest)
+      returns (AccountLoginFinishResponse) {};
+
+  rpc AccountLogout(AccountLogoutRequest) returns (AccountLogoutResponse) {};
+  // Account
+  rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {};
+  rpc UpdateAccount(UpdateAccountRequest) returns (UpdateAccountResponse) {};
+  // rpc GetNewEmailVerification(GetNewEmailVerificationRequest) returns
+  // (GetNewEmailVerificationResponse) {};
+  rpc GetAccountDetails(GetAccountDetailsRequest)
+      returns (GetAccountDetailsResponse) {};
+
+  rpc CreateCheckout(CreateCheckoutRequest) returns (CreateCheckoutResponse) {};
+  // api
+  rpc SetApiSettings(SetApiSettingsRequest) returns (SetApiSettingsResponse) {};
+  rpc CreateNewApiKey(CreateNewApiKeyRequest)
+      returns (CreateNewApiKeyResponse) {}
+}

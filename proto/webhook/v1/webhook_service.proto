@@ -1,0 +1,11 @@
+syntax = "proto3";
+package webhook;
+import "webhook/v1/webhook.proto";
+import "webhook/v1/webhook_event.proto";
+
+service WebhookService {
+  rpc CreateWebhook(CreateWebhookRequest) returns (CreateWebhookResponse) {};
+  rpc DeleteWebhook(DeleteWebhookRequest) returns (DeleteWebhookResponse) {};
+  rpc ListWebhooks(ListWebhooksPaginationRequest) returns (ListWebhooksPaginationResponse) {};
+}
+

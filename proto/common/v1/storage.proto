@@ -1,0 +1,33 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+package common.storage;
+message StoragePermission {
+  bool registered_users_only = 1;
+  bool view_permission = 2;
+  bool read_permission = 3;
+  bool write_permission = 4;
+  bool delete_file_permission = 5;
+  bool delete_bucket_permission = 6;
+  bool share_bucket_permission = 7;
+  bool clone_permission = 8;
+  bool search_permission = 9;
+}
+
+  /// Handles how storage operations will be handled, in conflicts and how to dela with capcity.
+message StorageOperationBehaviour {
+  /// Referencer to options that will partially write the data is allowed.
+  /// The resson why only data could partially could be:
+  /// - Not enough capacity.
+  /// - Conflicting file paths.
+  /// - permission denial.
+  bool allow_partial = 1;
+  /// How to deal with overlapping absolute file paths.
+  bool should_overwrite = 2;
+  /// Weather capacity should be deleted because of the operation or not.
+  bool is_capacity_destructive = 3;
+}
+
+message BucketGuid {
+  string user_id = 1;
+  string bucket_id = 2;
+}

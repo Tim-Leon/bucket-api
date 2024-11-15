@@ -1,5 +1,5 @@
 syntax = "proto3";
-package backend_api;
+package bucket;
 import "google/protobuf/timestamp.proto";
 
 message File {
@@ -33,7 +33,7 @@ message Filesystem {
   repeated File files = 2;
 }
 
-message GetBucketFilestructureRequest {
+message GetFilestructurePaginationRequest {
   // The name of the bucket.
   string bucket_id = 1;
   // Bucket owner id.
@@ -47,7 +47,7 @@ message GetBucketFilestructureRequest {
   bool should_paginate = 5;
 }
 
-message GetBucketFilestructureResponse {
+message GetFilestructurePaginationResponse {
   // The filesystem of the bucket.
   Filesystem filesystem = 1;
   // Used to query the continuation from last request.
