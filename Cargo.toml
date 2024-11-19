@@ -8,13 +8,16 @@ edition = "2021"
 default = ["server-api", "client-api", "all_api"]
 client-api = []
 server-api = []
-all_api = ["metrics", "storage", "share", "webhook", "seach"]
+all_api = ["metrics", "storage", "share", "webhook", "search", "engine", "account", "region"]
 # API for getting the metrics using operntelemetry over ptotobuf.
 metrics = ["opentelemetry-proto"]
 storage = []
 share = []
 webhook = []
-seach = []
+search = []
+region = []
+engine = []
+account = []
 [dependencies]
 tonic-health = {version = "*", default-features = false, features = []}
 tonic-web = {version = "*", default-features = false, features = []}

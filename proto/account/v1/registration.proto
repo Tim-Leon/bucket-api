@@ -1,0 +1,26 @@
+syntax = "proto3";
+package account;
+// https://docs.rs/opaque-ke/latest/opaque_ke/
+// Will use opaque-ke for registration and login.
+// From opaque-ke we will get a session token. This token can later be used to
+// create a JWT token for API usage.
+message CreateAccountStartRequest {
+  bytes oprf = 1; // OPAQUE Registration message.
+  string email = 2;
+  string captcha = 3;
+}
+
+message CreateAccountStartResponse {
+  bytes oprf = 1; // OPAQUE Registration message.
+  string session_id = 2;
+}
+
+message CreateAccountFinishRequest {
+  string username = 1;
+  bytes oprf = 2; // OPAQUE Registration message.
+  string session_id = 3;
+  bytes public_signing_key = 4; // The signing key that is used by the server to
+  // verify user signatures.
+}
+
+message CreateAccountFinishResponse { string jwt_token = 1; }

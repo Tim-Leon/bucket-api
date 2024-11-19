@@ -10,6 +10,8 @@ message StorageEngineDetail {
   string average_latency = 3;
   string average_throuput = 4;
   string average_load = 5;
+  uint64 capactiy_utilized = 7;
+  uint64 capacity_available = 8;
 }
 
 message GetStorageEnginePaginationResponse {

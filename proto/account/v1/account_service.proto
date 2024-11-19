@@ -1,21 +1,26 @@
 syntax = "proto3";
 import "account/v1/account.proto";
 import "account/v1/auth.proto";
+import "account/v1/mfa.proto";
+import "account/v1/login.proto";
+import "account/v1/registration.proto";
+import "account/v1/access_token.proto";
+
 package account;
 
 service AccountService {
-  // Auth
+  // Signup
   rpc CreateAccountStart(CreateAccountStartRequest)
       returns (CreateAccountStartResponse) {};
   rpc CreateAccountFinish(CreateAccountFinishRequest)
       returns (CreateAccountFinishResponse) {};
-
+  // Password based login
   rpc AccountLoginStart(AccountLoginStartRequest)
       returns (AccountLoginStartResponse) {};
   rpc AccountLoginFinish(AccountLoginFinishRequest)
       returns (AccountLoginFinishResponse) {};
-
   rpc AccountLogout(AccountLogoutRequest) returns (AccountLogoutResponse) {};
+
   // Account
   rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {};
   rpc UpdateAccount(UpdateAccountRequest) returns (UpdateAccountResponse) {};
@@ -27,6 +32,6 @@ service AccountService {
   rpc CreateCheckout(CreateCheckoutRequest) returns (CreateCheckoutResponse) {};
   // api
   rpc SetApiSettings(SetApiSettingsRequest) returns (SetApiSettingsResponse) {};
-  rpc CreateNewApiKey(CreateNewApiKeyRequest)
-      returns (CreateNewApiKeyResponse) {}
+  rpc CreateNewAccessToken(CreateNewAccessTokenRequest)
+      returns (CreateNewAccessTokenResponse) {}
 }

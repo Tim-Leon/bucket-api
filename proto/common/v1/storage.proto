@@ -31,3 +31,4 @@ message BucketGuid {
   string user_id = 1;
   string bucket_id = 2;
 }
+

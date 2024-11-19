@@ -1,11 +1,11 @@
 
 pub mod backend_api {
     //include!(concat!(env!("OUT_DIR"), "/backend_api.rs"));
-    tonic::include_proto!("backend_api");
+    //tonic::include_proto!("backend_api");
 }
 
 pub mod webhook_event {
-    tonic::include_proto!("webhook_event");
+    //tonic::include_proto!("webhook_event");
 }
 
 
@@ -14,7 +14,7 @@ pub mod webhook_event {
 pub mod tonic {
     #[cfg(feature = "metrics")]
     pub use opentelemetry_proto::tonic;
-    #[cfg(feature = "bucket")]
+    #[cfg(feature = "storage")]
     #[path = "storage/v1"]
     pub mod storage {
 

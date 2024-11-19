@@ -69,34 +69,6 @@ message AddCreditsToBucketRequest {
 
 message AddCreditsToBucketResponse {}
 
-message SetApiSettingsRequest {
-  bool api_is_enable =
-      1; /// Disabled by default. Use this request with parameter set as true.
-}
-
-/// To globaly enable or disable API for user, In case the API is compromised
-/// this can be used. Will be disabled by default to reduce security footprint.
-message SetApiSettingsResponse { bool api_is_enable = 1; }
-
-message CreateNewApiKeyRequest {
-  /// ISO 8601 format.
-  optional google.protobuf.Timestamp expires_at = 1;
-  // will be API, or USER. User can revoke API tokens, API can't.
-  string role = 2;
-  /// Empty to allow access to all available buckets under user.
-  /// Set to limit the access to specific users buckets.
-  repeated string opt_user_id_access = 4;
-  /// If the API is only allowed to access a set
-  /// of specific bucket, leave empty for all.
-  repeated string opt_bucket_id_access = 3;
-
-  optional bytes metadata = 6; /// Metadata to be stored with the API key.
-}
-
-message CreateNewApiKeyResponse {
-  string api_token = 1; /// Will be a jwt token with role of 'api'.
-}
-
 
 /// If both field are empty, it will assume the user is requesting for his own
 /// account details. Some information such as email are never returned when

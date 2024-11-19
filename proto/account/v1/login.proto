@@ -1,0 +1,28 @@
+syntax = "proto3";
+package account;
+
+
+message AccountLoginStartRequest {
+  string email = 1;
+  bytes oprf = 2; // OPAQUE login message.
+}
+
+message AccountLoginStartResponse {
+  bytes oprf = 1; // OPAQUE login message.
+  string session_id = 2;
+  bool is_totp_code_required = 3;
+}
+
+message AccountLoginFinishRequest {
+  bytes oprf = 1; // OPAQUE login message.
+  string session_id = 2;
+  optional string totp_code = 3;
+}
+
+message AccountLoginFinishResponse { string jwt_token = 1; }
+
+
+/// Invalidates the users JWT-token.
+message AccountLogoutRequest { string token = 1; }
+
+message AccountLogoutResponse {}

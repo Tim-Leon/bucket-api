@@ -1,10 +1,11 @@
 syntax = "proto3";
 package transcoding.compression;
+import "common/v1/storage.proto";
 message ArchiveCompressionRequest {
   repeated string from_absolute_paths = 1;
   string to_absolute_path = 2;
   string algorithm = 3;
-
+  common.storage.StorageOperationBehaviour behaviour = 4;
 }
 
 message ArchiveCompressionResponse {

@@ -1,0 +1,17 @@
+syntax = "proto3";
+package account;
+
+// 2FA Setup and Verification. Will use TOTP. Will require the user to verify
+// the 2FA code with verifies message. Until then it's just temporary. Client ->
+// SetupTwoFactorAuthenticationRequest -> Server Client <-
+// SetupTwoFactorAuthenticationResponse <- Server Client ->
+// SetupVerifyTwoFactorAuthenticationRequest -> Server Client <-
+// SetupVerifyTwoFactorAuthenticationResponse <- Server
+// First the user gets the secrete, the user stores the secrete, the user uses the secrete to compute the first totp code and send that in for verification.
+message SetupTwoFactorAuthenticationRequest {}
+
+message SetupTwoFactorAuthenticationResponse { string totp_secrete = 1; }
+
+message SetupTwoFactorAuthenticationVerifyRequest { string totp_code = 1; }
+/// Will return a status error message if totp_code is invalid.
+message SetupTwoFactorAuthenticationVerifyResponse {}
