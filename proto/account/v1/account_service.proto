@@ -5,7 +5,7 @@ import "account/v1/mfa.proto";
 import "account/v1/login.proto";
 import "account/v1/registration.proto";
 import "account/v1/access_token.proto";
-
+import "account/v1/account_decentralized_signing.proto";
 package account;
 
 service AccountService {
@@ -33,5 +33,7 @@ service AccountService {
   // api
   rpc SetApiSettings(SetApiSettingsRequest) returns (SetApiSettingsResponse) {};
   rpc CreateNewAccessToken(CreateNewAccessTokenRequest)
-      returns (CreateNewAccessTokenResponse) {}
+      returns (CreateNewAccessTokenResponse) {};
+
+   rpc RegisterAccountSigning(RegisterAccountSigningRequest) returns (RegisterAccountSigningResponse) {};
 }

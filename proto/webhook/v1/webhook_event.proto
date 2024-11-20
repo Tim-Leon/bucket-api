@@ -18,9 +18,10 @@ message UploadFilesToBucketEvent {
 
 message WebhookEvents {
   oneof event {
-    CreateBucketEvent create_bucket_event = 1;
-    DeleteBucketEvent delete_bucket_event = 2;
-    UpdateBucketEvent update_bucket_event = 3;
-    UploadFilesToBucketEvent upload_files_to_bucket_event = 4;
+    CreateBucketEvent create_bucket_event = 2;
+    DeleteBucketEvent delete_bucket_event = 3;
+    UpdateBucketEvent update_bucket_event = 4;
+    UploadFilesToBucketEvent upload_files_to_bucket_event = 5;
   }
+
 }

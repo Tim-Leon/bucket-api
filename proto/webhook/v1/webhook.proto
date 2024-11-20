@@ -29,7 +29,6 @@ message CreateWebhookResponse {
   bytes signature_public_key = 1;
 
   uint32 webhook_id = 2;
-
 }
 
 message ListWebhooksPaginationRequest {

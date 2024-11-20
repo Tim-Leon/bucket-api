@@ -63,8 +63,11 @@ message DeleteAccountRequest { string user_id = 1; }
 message DeleteAccountResponse { optional string user_id_str = 1; }
 
 message AddCreditsToBucketRequest {
-  string bucket_id = 1;
+  string bucket_guid = 1;
   uint32 credits = 2;
+  /// The amount of credits will infunce the expire_at date, 
+  /// Pricing might have changed as of the request. This checks that the bucket is exteneded for the correct amount without any missmatch. 
+  google.common.timestmap expire_at = 3;
 }
 
 message AddCreditsToBucketResponse {}

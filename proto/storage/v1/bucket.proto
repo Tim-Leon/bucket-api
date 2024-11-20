@@ -392,7 +392,10 @@ message CreateClientUpload {}
 message ListBucketsRequest {
   // Gets buckets under user.
   optional string user_id = 1;
+  optional string continuation_token = 2;
+  bool should_paginate = 3;
 }
 message ListBucketsResponse {
   repeated common.storage.BucketGuid bucket_guids = 1;
+  optional string continuation_token = 2;
 }
