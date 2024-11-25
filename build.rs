@@ -1,4 +1,7 @@
-fn main() {
+use std::error::Error;
+
+
+fn main() -> Result<(), Box<dyn Error>> {
     let mut config = tonic_build::configure();
     #[cfg(feature = "server-api")]
     {
@@ -16,6 +19,7 @@ fn main() {
                 "proto/storage/v1/storage_service.proto",
                 "proto/common/v1/account.proto",
                 "proto/common/v1/storage.proto",
+                "proto/common/v1/types.proto",
                 "proto/engine/v1/engine_service.proto",
                 "proto/region/v1/region_service.proto",
                 "proto/search/v1/search_service.proto",
@@ -24,6 +28,6 @@ fn main() {
                 "proto/webhook/v1/webhook_service.proto",
             ],
             &["proto"],
-        )
-        .unwrap();
+        )?;
+    Ok(())
 }

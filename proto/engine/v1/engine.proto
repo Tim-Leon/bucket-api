@@ -17,3 +17,11 @@ message StorageEngineDetail {
 message GetStorageEnginePaginationResponse {
   StorageEngineDetail details = 1;
 }
+
+message GetStorageEngineMetricsRequest {
+  string name = 1; 
+}
+
+message GetStorageEngineMetricsResponse {
+
+}

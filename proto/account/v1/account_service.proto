@@ -1,12 +1,13 @@
 syntax = "proto3";
 import "account/v1/account.proto";
-import "account/v1/auth.proto";
 import "account/v1/mfa.proto";
 import "account/v1/login.proto";
 import "account/v1/registration.proto";
 import "account/v1/access_token.proto";
-import "account/v1/account_decentralized_signing.proto";
+import "account/v1/payment.proto";
 package account;
+
+
 
 service AccountService {
   // Signup
@@ -34,6 +35,4 @@ service AccountService {
   rpc SetApiSettings(SetApiSettingsRequest) returns (SetApiSettingsResponse) {};
   rpc CreateNewAccessToken(CreateNewAccessTokenRequest)
       returns (CreateNewAccessTokenResponse) {};
-
-   rpc RegisterAccountSigning(RegisterAccountSigningRequest) returns (RegisterAccountSigningResponse) {};
 }

@@ -67,7 +67,7 @@ message AddCreditsToBucketRequest {
   uint32 credits = 2;
   /// The amount of credits will infunce the expire_at date, 
   /// Pricing might have changed as of the request. This checks that the bucket is exteneded for the correct amount without any missmatch. 
-  google.common.timestmap expire_at = 3;
+  google.protobuf.Timestamp expire_at = 3;
 }
 
 message AddCreditsToBucketResponse {}
@@ -106,16 +106,6 @@ message AccountDetail {
 message GetAccountDetailsResponse {
   AccountDetail account_detail = 1;
 }
-
-/// Used to create payment checkout for a user. User will get a link in
-/// response, re-directing them to our payment provider.
-message CreateCheckoutRequest {
-  string payment_model = 1;
-  bool change_payment_model = 2; // If this request is allowed to change payment
-                                 // model. Should be false by default.
-}
-
-message CreateCheckoutResponse { string url_redirection = 1; }
 
 // After each signup an email to the user is sent to verify the email address.
 // If this email sent is lost, the user can request a new email to be sent using

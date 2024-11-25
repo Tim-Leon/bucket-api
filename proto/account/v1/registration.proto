@@ -16,11 +16,19 @@ message CreateAccountStartResponse {
 }
 
 message CreateAccountFinishRequest {
+  /// Username the user wants.
   string username = 1;
-  bytes oprf = 2; // OPAQUE Registration message.
+  /// OPAQUE Registration message.
+  bytes oprf = 2; 
+  /// Coresponding session id.
   string session_id = 3;
-  bytes public_signing_key = 4; // The signing key that is used by the server to
-  // verify user signatures.
+  /// The signing key, used to gurantee decentralized integrity and authenticity if needed.
+  bytes public_siganture_key = 4; 
+  /// One of the shamir secrete shards. So user can recover data under accound if they loss password. 
+  optional string secrete_shard = 5; 
 }
 
-message CreateAccountFinishResponse { string jwt_token = 1; }
+message CreateAccountFinishResponse { 
+  string token_type = 1; // Probably jwt.
+  string access_token = 2;
+ }

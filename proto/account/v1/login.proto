@@ -1,7 +1,6 @@
 syntax = "proto3";
 package account;
 
-
 message AccountLoginStartRequest {
   string email = 1;
   bytes oprf = 2; // OPAQUE login message.
